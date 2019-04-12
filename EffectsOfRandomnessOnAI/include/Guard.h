@@ -16,13 +16,13 @@ public:
 	}
 	~Guard() {}
 	void setTargetRotation();	//sets the rotation necessary to move towards the target node
-	void update(Randomness &randomness, sf::Vector2f &playerPos);
+	void update(Randomness &randomness, sf::Vector2f &playerPos, float &resScaler);
 
 	void draw(sf::RenderWindow &window); 	//draws player
 
-	void init(Node* node, sf::Texture &guardTex, sf::Texture &lineOfSightText, std::string fNode); 	//initialises the guard
+	void init(Node* node, sf::Texture &guardTex, sf::Texture &lineOfSightText, std::string fNode, float resScaler); 	//initialises the guard
 
-	void Reset(Node* node); 	//resets the guard back to its original position
+	void Reset(Node* node, float resScaler); 	//resets the guard back to its original position
 
 	sf::Vector2f m_position; 	//position of the guard on x and y
 
@@ -54,7 +54,7 @@ private:
 
 	void rotate(); 	//rotates the guard to face its target node
 
-	void playerdetection(Randomness &randomness, sf::Vector2f playerPos);	//checks if the player is close enough behind to turn around 
+	void playerdetection(Randomness &randomness, sf::Vector2f playerPos, float &resScaler);	//checks if the player is close enough behind to turn around 
 
 	bool rotating;
 

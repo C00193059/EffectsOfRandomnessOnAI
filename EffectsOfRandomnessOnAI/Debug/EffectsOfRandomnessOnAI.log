@@ -1,61 +1,56 @@
 ﻿  Guard.cpp
-c:\users\niall\documents\effectsofrandomnessonai\effectsofrandomnessonai\include\waypoint.h(18): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+c:\users\niall\downloads\effectsofrandomnessonai\effectsofrandomnessonai\include\waypoint.h(18): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-c:\users\niall\documents\effectsofrandomnessonai\effectsofrandomnessonai\src\guard.cpp(13): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
-c:\users\niall\documents\effectsofrandomnessonai\effectsofrandomnessonai\src\guard.cpp(14): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
-c:\users\niall\documents\effectsofrandomnessonai\effectsofrandomnessonai\src\guard.cpp(37): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
-c:\users\niall\documents\effectsofrandomnessonai\effectsofrandomnessonai\src\guard.cpp(38): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
-c:\users\niall\documents\effectsofrandomnessonai\effectsofrandomnessonai\src\guard.cpp(43): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
-c:\users\niall\documents\effectsofrandomnessonai\effectsofrandomnessonai\src\guard.cpp(45): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
-c:\users\niall\documents\effectsofrandomnessonai\effectsofrandomnessonai\src\guard.cpp(201): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\users\niall\documents\effectsofrandomnessonai\effectsofrandomnessonai\src\guard.cpp(257): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+c:\users\niall\downloads\effectsofrandomnessonai\effectsofrandomnessonai\src\guard.cpp(13): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
+c:\users\niall\downloads\effectsofrandomnessonai\effectsofrandomnessonai\src\guard.cpp(14): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
+c:\users\niall\downloads\effectsofrandomnessonai\effectsofrandomnessonai\src\guard.cpp(29): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\niall\downloads\effectsofrandomnessonai\effectsofrandomnessonai\src\guard.cpp(39): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
+c:\users\niall\downloads\effectsofrandomnessonai\effectsofrandomnessonai\src\guard.cpp(40): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
+c:\users\niall\downloads\effectsofrandomnessonai\effectsofrandomnessonai\src\guard.cpp(45): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+c:\users\niall\downloads\effectsofrandomnessonai\effectsofrandomnessonai\src\guard.cpp(47): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+c:\users\niall\downloads\effectsofrandomnessonai\effectsofrandomnessonai\src\guard.cpp(203): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\niall\downloads\effectsofrandomnessonai\effectsofrandomnessonai\src\guard.cpp(259): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=float
           ]
-c:\users\niall\documents\effectsofrandomnessonai\effectsofrandomnessonai\src\guard.cpp(258): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+c:\users\niall\downloads\effectsofrandomnessonai\effectsofrandomnessonai\src\guard.cpp(260): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=float
           ]
   Player.cpp
-c:\users\niall\documents\effectsofrandomnessonai\effectsofrandomnessonai\include\wall.h(15): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\niall\documents\effectsofrandomnessonai\effectsofrandomnessonai\include\waypoint.h(18): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+c:\users\niall\downloads\effectsofrandomnessonai\effectsofrandomnessonai\include\waypoint.h(18): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-c:\users\niall\documents\effectsofrandomnessonai\effectsofrandomnessonai\src\player.cpp(106): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
-c:\users\niall\documents\effectsofrandomnessonai\effectsofrandomnessonai\src\player.cpp(113): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
-c:\users\niall\documents\effectsofrandomnessonai\effectsofrandomnessonai\src\player.cpp(131): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
-c:\users\niall\documents\effectsofrandomnessonai\effectsofrandomnessonai\src\player.cpp(138): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
-c:\users\niall\documents\effectsofrandomnessonai\effectsofrandomnessonai\src\player.cpp(155): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
-c:\users\niall\documents\effectsofrandomnessonai\effectsofrandomnessonai\src\player.cpp(162): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
-c:\users\niall\documents\effectsofrandomnessonai\effectsofrandomnessonai\src\player.cpp(180): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
-c:\users\niall\documents\effectsofrandomnessonai\effectsofrandomnessonai\src\player.cpp(187): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
+c:\users\niall\downloads\effectsofrandomnessonai\effectsofrandomnessonai\src\player.cpp(20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\niall\downloads\effectsofrandomnessonai\effectsofrandomnessonai\src\player.cpp(103): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
+c:\users\niall\downloads\effectsofrandomnessonai\effectsofrandomnessonai\src\player.cpp(110): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
+c:\users\niall\downloads\effectsofrandomnessonai\effectsofrandomnessonai\src\player.cpp(128): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
+c:\users\niall\downloads\effectsofrandomnessonai\effectsofrandomnessonai\src\player.cpp(135): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
+c:\users\niall\downloads\effectsofrandomnessonai\effectsofrandomnessonai\src\player.cpp(152): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
+c:\users\niall\downloads\effectsofrandomnessonai\effectsofrandomnessonai\src\player.cpp(159): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
+c:\users\niall\downloads\effectsofrandomnessonai\effectsofrandomnessonai\src\player.cpp(177): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
+c:\users\niall\downloads\effectsofrandomnessonai\effectsofrandomnessonai\src\player.cpp(184): warning C4244: '=': conversion from 'const int' to 'float', possible loss of data
   Source.cpp
-c:\users\niall\documents\effectsofrandomnessonai\effectsofrandomnessonai\include\wall.h(15): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\niall\documents\effectsofrandomnessonai\effectsofrandomnessonai\include\waypoint.h(18): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+c:\users\niall\downloads\effectsofrandomnessonai\effectsofrandomnessonai\include\waypoint.h(18): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-c:\users\niall\documents\effectsofrandomnessonai\effectsofrandomnessonai\src\source.cpp(344): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\niall\downloads\effectsofrandomnessonai\effectsofrandomnessonai\src\source.cpp(354): warning C4244: 'argument': conversion from 'float' to 'unsigned int', possible loss of data
+c:\users\niall\downloads\effectsofrandomnessonai\effectsofrandomnessonai\src\source.cpp(357): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\niall\downloads\effectsofrandomnessonai\effectsofrandomnessonai\src\source.cpp(399): warning C4244: 'argument': conversion from 'float' to 'unsigned int', possible loss of data
   Wall.cpp
-c:\users\niall\documents\effectsofrandomnessonai\effectsofrandomnessonai\include\waypoint.h(18): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-c:\users\niall\documents\effectsofrandomnessonai\effectsofrandomnessonai\include\wall.h(15): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  Waypoint.cpp
-c:\users\niall\documents\effectsofrandomnessonai\effectsofrandomnessonai\include\waypoint.h(18): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+c:\users\niall\downloads\effectsofrandomnessonai\effectsofrandomnessonai\include\waypoint.h(18): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
   Generating Code...
-  EffectsOfRandomnessOnAI.vcxproj -> C:\Users\niall\Documents\EffectsOfRandomnessOnAI\Debug\EffectsOfRandomnessOnAI.exe
+  EffectsOfRandomnessOnAI.vcxproj -> C:\Users\niall\Downloads\EffectsOfRandomnessOnAI\Debug\EffectsOfRandomnessOnAI.exe

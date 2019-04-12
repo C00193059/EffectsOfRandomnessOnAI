@@ -5,7 +5,7 @@
 ////Effects of Randomness on AI
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-sf::RenderWindow window(sf::VideoMode(950, 750), "Effects of Randomness on AI");//create window for the game
+float resolutionScaler = 1.0f;
 
 
 //used to cap the framerate
@@ -20,7 +20,6 @@ Randomness m_randomness = Randomness::None;
 ////////////////////////////////////////////////////////////////
 bool rPressed = false;
 
-Player player;
 
 sf::Event event;
 
@@ -272,12 +271,12 @@ void NodeInit()
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////calls the reset functions for all the guards and the player
-void Reset()
+void Reset(Player & player)
 {
-	guard1.Reset(&guard1Node1);
-	guard2.Reset(&guard2Node1);
-	guard3.Reset(&guard3Node1);
-	player.Reset();
+	guard1.Reset(&guard1Node1, resolutionScaler);
+	guard2.Reset(&guard2Node1, resolutionScaler);
+	guard3.Reset(&guard3Node1, resolutionScaler);
+	player.Reset(resolutionScaler);
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////increases the level of randomness by 1 at a time
@@ -309,11 +308,11 @@ void ChangeRandomness()
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////Checks to see if the player has reached the goal
 ////if they have change the gamestate to the win screen, increase the randomness and call the reset function
-void GoalCollisionDetection()
+void GoalCollisionDetection(Player & player)
 {
 	if (goal.getGlobalBounds().intersects(player.player.getGlobalBounds()))
 	{
-		Reset();
+		Reset(player);
 		ChangeRandomness();
 		m_gameState = GameStates::WinScreen;
 	}
@@ -322,16 +321,16 @@ void GoalCollisionDetection()
 ////checks to see if the player collided with any of the guards or walked into their line of sight
 ////Guard collisions are only checked in that guards area so as to not colide with guards line of sight on the opposite side of the wall
 ////if the player has collided with a guard or line of sight change the gamestate to the lose screen and call the reset function 
-void GuardCollisionDetection()
+void GuardCollisionDetection(Player & player)
 {
 	if ((guard1.guard.getGlobalBounds().intersects(player.player.getGlobalBounds()) || guard1.lineOfSight.getGlobalBounds().intersects(player.player.getGlobalBounds())
-		&& player.m_position.y > 450)||
+		&& player.m_position.y > 450 * resolutionScaler) ||
 		(guard2.guard.getGlobalBounds().intersects(player.player.getGlobalBounds()) || guard2.lineOfSight.getGlobalBounds().intersects(player.player.getGlobalBounds())
-			&& player.m_position.y < 400 && player.m_position.x < 400) ||
-		(guard3.guard.getGlobalBounds().intersects(player.player.getGlobalBounds()) || guard3.lineOfSight.getGlobalBounds().intersects(player.player.getGlobalBounds())
-			&& player.m_position.y < 400) && player.m_position.x > 550)
+			&& player.m_position.y < 400 * resolutionScaler && player.m_position.x < 400 * resolutionScaler) ||
+			(guard3.guard.getGlobalBounds().intersects(player.player.getGlobalBounds()) || guard3.lineOfSight.getGlobalBounds().intersects(player.player.getGlobalBounds())
+				&& player.m_position.y < 400 * resolutionScaler) && player.m_position.x > 550 * resolutionScaler)
 	{
-		Reset();
+		Reset(player);
 		m_gameState = GameStates::LoseScreen;
 	}
 }
@@ -340,6 +339,20 @@ void GuardCollisionDetection()
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 int main()
 {
+	//used to scale the game depending on resolution of the screen
+	std::cout << sf::VideoMode::getDesktopMode().width << ", " << sf::VideoMode::getDesktopMode().height;
+	if (sf::VideoMode::getDesktopMode().width < 1100 && sf::VideoMode::getDesktopMode().width < 1100)
+	{
+		resolutionScaler = 0.5f;
+	}
+	else if (sf::VideoMode::getDesktopMode().width > 2000 && sf::VideoMode::getDesktopMode().width > 2000)
+	{
+		resolutionScaler = 2.0f;
+	}
+	Player player(resolutionScaler);
+
+	sf::RenderWindow window(sf::VideoMode(950 * resolutionScaler, 750 * resolutionScaler), "Effects of Randomness on AI");//create window for the game
+
 	fpsClock.restart();
 	srand(time(NULL));	//seeds the random number generator
 	NodeInit();
@@ -383,21 +396,26 @@ int main()
 
 	randText.setFont(font);	// set the font
 	randText.setString("Randomness : " + strRandNone);	// set the string to display
-	randText.setCharacterSize(50);
+	randText.setCharacterSize(50.0f * resolutionScaler);
 	randText.setFillColor(sf::Color::White);
 	randText.setStyle(sf::Text::Bold);
-	randText.setPosition(450, 690);
+	randText.setPosition(450.0f * resolutionScaler, 690.0f * resolutionScaler);
 	//initialise the guards
-	guard1.init(&guard1Node1, guardTex, lineOfSightText, "node11");
-	guard2.init(&guard2Node1, guardTex, lineOfSightText, "node9");
-	guard3.init(&guard3Node1, guardTex, lineOfSightText, "node9");
+	guard1.init(&guard1Node1, guardTex, lineOfSightText, "node11", resolutionScaler);
+	guard2.init(&guard2Node1, guardTex, lineOfSightText, "node9", resolutionScaler);
+	guard3.init(&guard3Node1, guardTex, lineOfSightText, "node9", resolutionScaler);
 	//set the textures for the sprites
 	background.setTexture(backgroundText);
+	background.scale(sf::Vector2f(resolutionScaler, resolutionScaler));
 	mainMenu.setTexture(mainMenuText);
+	mainMenu.scale(sf::Vector2f(resolutionScaler, resolutionScaler));
 	win.setTexture(winText);
+	win.scale(sf::Vector2f(resolutionScaler, resolutionScaler));
 	lose.setTexture(loseText);
+	lose.scale(sf::Vector2f(resolutionScaler, resolutionScaler));
 	goal.setTexture(goalText);
-	goal.setPosition(550, 50);
+	goal.setPosition(550.0f * resolutionScaler, 50.0f * resolutionScaler);
+	goal.scale(sf::Vector2f(resolutionScaler, resolutionScaler));
 
 	int grid[19][15] = { {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},         //the 2D array used to design the map and create all the walls
 		{1,0,0,0,0,0,0,0,1,0,0,0,0,0,1},
@@ -424,8 +442,8 @@ int main()
 		for (int y = 0; y < 15; y++)
 		{
 			if (grid[x][y] == 1)
-			{	
-				walls.push_back(Wall(x * 50, y * 50, wallText));	//if there is a 1 put a wall in that position
+			{
+				walls.push_back(Wall(x * 50.0f * resolutionScaler, y * 50.0f * resolutionScaler, wallText, resolutionScaler));	//if there is a 1 put a wall in that position
 			}
 		}
 	}
@@ -466,11 +484,11 @@ int main()
 				}
 				player.keyEvents(window);
 				player.update(WallCollisionDetection(player.player, player.m_position));
-				guard1.update(m_randomness, player.m_position);
-				guard2.update(m_randomness, player.m_position);
-				guard3.update(m_randomness, player.m_position);
-				GoalCollisionDetection();
-				GuardCollisionDetection();
+				guard1.update(m_randomness, player.m_position, resolutionScaler);
+				guard2.update(m_randomness, player.m_position, resolutionScaler);
+				guard3.update(m_randomness, player.m_position, resolutionScaler);
+				GoalCollisionDetection(player);
+				GuardCollisionDetection(player);
 
 				// reset the timeSinceLastUpdate to 0 
 				timeSinceLastUpdate = sf::Time::Zero;

@@ -8,8 +8,9 @@ class Player
 {
 public:
 
-	Player(); 	//constructor of player
-	~Player();
+	Player() {} 	//constructor of player
+	Player(float &resScaler);
+	~Player() {}
 
 	void update(bool collision);
 
@@ -17,7 +18,7 @@ public:
 
 	void keyEvents(sf::RenderWindow &window); 	//detects key inputs for moving the player
 
-	void Reset();
+	void Reset(float &resScaler);
 
 	sf::Vector2f m_position; 	//position of player on x and y
 	//sprite to draw the player in the game

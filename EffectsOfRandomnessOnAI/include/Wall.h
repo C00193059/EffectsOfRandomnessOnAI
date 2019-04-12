@@ -9,10 +9,11 @@ class Wall
 {
 public:
 	Wall() {} 	//constructor of wall
-	Wall(int x, int y, sf::Texture &wallT)
+	Wall(float x, float y, sf::Texture &wallT, float resScaler)
 	{
 		wall.setTexture(wallT);
 		wall.setPosition(x, y);
+		wall.scale(sf::Vector2f(resScaler, resScaler));
 	}
 	~Wall() {}
 

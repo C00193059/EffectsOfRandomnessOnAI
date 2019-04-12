@@ -3,7 +3,7 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////Default constructor for the player
 ////loads in and sets the players sprite
-Player::Player()
+Player::Player(float &resScaler)
 {
 	if (!playerTex.loadFromFile("Player1.png"))
 	{
@@ -13,31 +13,28 @@ Player::Player()
 	targetRotation = 0;
 	player.setTexture(playerTex);
 	player.setOrigin(sf::Vector2f(15.0f, 15.0f));	//sets the sprites origin to the centre of the image
+	player.scale(sf::Vector2f(resScaler, resScaler));
 	//set position of the player
-	m_position = sf::Vector2f(880, 680);
+	m_position = sf::Vector2f(880 * resScaler, 680.0f * resScaler);
 	player.setPosition(m_position);
-	m_speed = 5.0;	//set the speed of the player
+	m_speed = 5.0 *resScaler;	//set the speed of the player
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////Resets the player back to their initial state
-void Player::Reset()
+void Player::Reset(float &resScaler)
 {
 	currentRotation = 0;
 	targetRotation = 0;
 	//set position of the player
-	m_position = sf::Vector2f(880, 680);
+	m_position = sf::Vector2f(880.0f * resScaler, 680.0f * resScaler);
 	player.setPosition(m_position);
 	player.setRotation(0);
-}
-Player::~Player()
-{
-	
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////draws the player on screen
 void Player::draw(sf::RenderWindow &window)
 {
-		window.draw(player);
+	window.draw(player);
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////Updates the player
@@ -93,7 +90,7 @@ void Player::rotate()
 ////only rotates the playerin the direction pressed if its the only direction pressed or its the last direction pressed and it wasnt already pressed
 void Player::keyEvents(sf::RenderWindow &window)
 {
-		//if the left key is pressed move the player left
+	//if the left key is pressed move the player left
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
 		if (currentRotation == left && !rotating)
@@ -118,7 +115,7 @@ void Player::keyEvents(sf::RenderWindow &window)
 	{
 		leftClick = false;
 	}
-		//if the right key is pressed move the player right
+	//if the right key is pressed move the player right
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
 		if (currentRotation == right && !rotating)
@@ -167,7 +164,7 @@ void Player::keyEvents(sf::RenderWindow &window)
 	{
 		upClick = false;
 	}
-		 //if the right key is pressed move the player right
+	//if the right key is pressed move the player right
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 	{
 		if (currentRotation == down && !rotating)

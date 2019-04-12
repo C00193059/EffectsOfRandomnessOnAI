@@ -5,7 +5,7 @@
 ////takes in a node to be used as the current node and set the position of the guard
 ////takes in the textures for the guard and their line of sight to be assigned to the coresponding sprites
 ////takes in a string to be used to determine the final node for the 'none' randomness level
-void Guard::init(Node* node, sf::Texture &guardTex, sf::Texture &lineOfSightText, std::string fNode)
+void Guard::init(Node* node, sf::Texture &guardTex, sf::Texture &lineOfSightText, std::string fNode, float resScaler)
 {
 
 	rotating = true;
@@ -13,30 +13,32 @@ void Guard::init(Node* node, sf::Texture &guardTex, sf::Texture &lineOfSightText
 	currentRotation = up;
 	targetRotation = up;
 	finalNode = fNode;
-	m_position = node->position;
+	m_position = node->position * resScaler;
 	previousNode.SetNode(node);
 	targetNode.SetNode(node->childNodes.back());	//sets the target node to the last child node of the current node
 	guard.setTexture(guardTex);
 	lineOfSight.setTexture(lineOfSightText);
 	guard.setPosition(m_position);
 	guard.setOrigin(sf::Vector2f(25, 25));	//sets the origin to the middle of the image
+	guard.scale(sf::Vector2f(resScaler, resScaler));
 	lineOfSight.setPosition(m_position);
 	lineOfSight.setOrigin(sf::Vector2f(25, 105));	//sets the origin to the bottom of the image to allow for the same position as the guard sprite
+	lineOfSight.scale(sf::Vector2f(resScaler, resScaler));
 	lineOfSight.setColor(sf::Color(255, 255, 255, 128));
 	setTargetRotation();
-	m_speed = 2.5;
+	m_speed = 2.5 * resScaler;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////resets the guard back to its original state
 ////used to make the game feel like it started over
 ////sets the guard back to the position it was when first created (node 1)
-void Guard::Reset(Node* node)
+void Guard::Reset(Node* node, float resScaler)
 {
 	rotating = true;
 	forward = true;
 	currentRotation = up;
 	targetRotation = up;
-	m_position = node->position;
+	m_position = node->position * resScaler;
 	previousNode.SetNode(node);
 	targetNode.SetNode(node->childNodes.back());
 	guard.setPosition(m_position);
@@ -49,25 +51,25 @@ void Guard::Reset(Node* node)
 ////draws the guard on screen
 void Guard::draw(sf::RenderWindow &window)
 {
-	window.draw(guard);
 	window.draw(lineOfSight);
+	window.draw(guard);
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////updates the guard
 ////takes in randomness to determine what way to select a new waypoint
 ////takes in player position to determine if the player has walked too close to the guard
-void  Guard::update(Randomness &randomness, sf::Vector2f &playerPos)
+void  Guard::update(Randomness &randomness, sf::Vector2f &playerPos, float &resScaler)
 {
-	playerdetection(randomness, playerPos);
+	playerdetection(randomness, playerPos, resScaler);
 	if (!rotating)
 	{
 		move();
 		guard.setPosition(m_position);
 		lineOfSight.setPosition(m_position);
-		if (m_position.x - targetNode.position.x >-4.9 && m_position.x - targetNode.position.x < 4.9
-			&& m_position.y - targetNode.position.y >-4.9 && m_position.y - targetNode.position.y < 4.9)
+		if (m_position.x - targetNode.position.x* resScaler > -4.9 * resScaler && m_position.x - targetNode.position.x* resScaler < 4.9 * resScaler
+			&& m_position.y - targetNode.position.y* resScaler >-4.9 * resScaler && m_position.y - targetNode.position.y* resScaler < 4.9 * resScaler)
 		{		//checks to see if the guard is less than 1 full movement away from the targetNode
-			m_position = targetNode.position;	//moves the guard to the target node position to make sure there are no errors
+			m_position = targetNode.position * resScaler;	//moves the guard to the target node position to make sure there are no errors
 			guard.setPosition(m_position);
 			lineOfSight.setPosition(m_position);
 			updateTarget(randomness);
@@ -83,17 +85,17 @@ void  Guard::update(Randomness &randomness, sf::Vector2f &playerPos)
 ////checks to see if the player is close enough behind the guard to turn around
 ////takes in randomness to make sure the check is not performed on high randomness as it could cause errors
 ////takes in player position to check the distance from the guard
-void Guard::playerdetection(Randomness &randomness, sf::Vector2f playerPos)
+void Guard::playerdetection(Randomness &randomness, sf::Vector2f playerPos, float &resScaler)
 {
 	if (randomness != Randomness::High)
 	{
 		//checks the position of the player depending on the direction of the guard
-		if (((targetRotation == up && playerPos.y - m_position.y < detectDist  && playerPos.y - m_position.y > 0
-			|| targetRotation == down && m_position.y - playerPos.y < detectDist  && m_position.y - playerPos.y > 0)
-			&& playerPos.x - m_position.x < 25 && playerPos.x - m_position.x >-25)
-			|| ((targetRotation == left && playerPos.x - m_position.x < detectDist && playerPos.x - m_position.x > 0
-				|| targetRotation == right && m_position.x - playerPos.x < detectDist && m_position.x - playerPos.x > 0)
-				&& playerPos.y - m_position.y < 25 && playerPos.y - m_position.y >-25))
+		if (((targetRotation == up && playerPos.y - m_position.y < detectDist * resScaler  && playerPos.y - m_position.y > 0
+			|| targetRotation == down && m_position.y - playerPos.y < detectDist * resScaler  && m_position.y - playerPos.y > 0)
+			&& playerPos.x - m_position.x < 25 * resScaler && playerPos.x - m_position.x >-25 * resScaler)
+			|| ((targetRotation == left && playerPos.x - m_position.x < detectDist * resScaler && playerPos.x - m_position.x > 0
+				|| targetRotation == right && m_position.x - playerPos.x < detectDist * resScaler && m_position.x - playerPos.x > 0)
+				&& playerPos.y - m_position.y < 25 * resScaler && playerPos.y - m_position.y >-25 * resScaler))
 		{
 			//swaps the previous and target nodes
 			accessNode = previousNode;
@@ -254,6 +256,6 @@ void Guard::rotate()
 ////Rotates the guard using m_speed based off their current rotation
 void Guard::move()
 {
-	m_position.x = m_position.x + cos((currentRotation - 90) * M_PI/ 180) * m_speed;
+	m_position.x = m_position.x + cos((currentRotation - 90) * M_PI / 180) * m_speed;
 	m_position.y = m_position.y + sin((currentRotation - 90) * M_PI / 180) * m_speed;
 }
